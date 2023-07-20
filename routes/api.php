@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContractController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    //obtain all active employees
+    Route::get('/employees', [EmployeeController::class, 'index']);
+
+    //add new employee
+    Route::post('/employee', [EmployeeController::class, 'store']);
+
+    //update employee
+    Route::put('/employee/{folio}', [EmployeeController::class, 'update']);
+
+    //store a contract
+    Route::post('/contract', [ContractController::class, 'store']);
+
+    //delete a contract
+    Route::delete('/contract/{employee_id}', [ContractController::class, 'destroy']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
