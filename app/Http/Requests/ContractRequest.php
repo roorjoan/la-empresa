@@ -28,7 +28,7 @@ class ContractRequest extends FormRequest
             'contract_type_id' => 'required',
             'date_from' => 'required',
             'date_to' => 'required',
-            'salary_per_day' => 'required'
+            'salary_per_day' => 'required',
         ];
     }
 }

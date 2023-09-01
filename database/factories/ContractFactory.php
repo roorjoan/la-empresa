@@ -17,11 +17,11 @@ class ContractFactory extends Factory
     public function definition()
     {
         return [
-            'employee_id' =>        fake()->randomElement(['1', '2']),
-            'contract_type_id' =>   fake()->randomElement(['1', '2', '3']),
-            'date_from' =>          fake()->dateTime(),
-            'date_to' =>            fake()->dateTime(),
-            'salary_per_day' =>     fake()->numberBetween(10, 40),
+            'employee_id' => fake()->randomElement(['1', '2']),
+            'contract_type_id' => fake()->randomElement(['1', '2', '3']),
+            'date_from' => fake()->dateTime(),
+            'date_to' => fake()->dateTime(),
+            'salary_per_day' => fake()->numberBetween(10, 40),
         ];
     }
 }

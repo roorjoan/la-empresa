@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContractRequest;
 use App\Models\Contract;
 
-
 class ContractController extends Controller
 {
     public function store(ContractRequest $request)

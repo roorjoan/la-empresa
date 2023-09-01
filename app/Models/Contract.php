@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Employee;
-use App\Models\ContractType;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -18,11 +16,11 @@ class Contract extends Model
         'contract_type_id',
         'date_from',
         'date_to',
-        'salary_per_day'
+        'salary_per_day',
     ];
 
     protected $hidden = [
-        'updated_at'
+        'updated_at',
     ];
 
     public function employee(): BelongsTo

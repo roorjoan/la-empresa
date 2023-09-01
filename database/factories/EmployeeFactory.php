@@ -17,12 +17,12 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'tax_id_number' =>  fake()->numerify('#############'),
-            'name' =>           fake()->name(),
-            'last_name' =>      fake()->lastName(),
-            'birth_date' =>     fake()->date(),
-            'email' =>          fake()->email(),
-            'cell_phone' =>     fake()->phoneNumber()
+            'tax_id_number' => fake()->numerify('#############'),
+            'name' => fake()->name(),
+            'last_name' => fake()->lastName(),
+            'birth_date' => fake()->date(),
+            'email' => fake()->email(),
+            'cell_phone' => fake()->phoneNumber(),
         ];
     }
 }

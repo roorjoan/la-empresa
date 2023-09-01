@@ -11,10 +11,10 @@ class ContractType extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     protected $hidden = [
-        'updated_at'
+        'updated_at',
     ];
 }

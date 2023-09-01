@@ -6,7 +6,6 @@ use App\Http\Requests\EmployeeRequest;
 use App\Http\Resources\EmployeeResource;
 use App\Models\Employee;
 
-
 class EmployeeController extends Controller
 {
     public function index()

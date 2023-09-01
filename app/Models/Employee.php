@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Contract;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model
@@ -17,11 +16,11 @@ class Employee extends Model
         'last_name',
         'birth_date',
         'email',
-        'cell_phone'
+        'cell_phone',
     ];
 
     protected $hidden = [
-        'updated_at'
+        'updated_at',
     ];
 
     public function contracts(): HasMany

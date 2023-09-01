@@ -30,7 +30,7 @@ class EmployeeRequest extends FormRequest
                 'last_name' => 'required',
                 'birth_date' => 'required|date',
                 'email' => 'required|email:filter',
-                'cell_phone' => 'required'
+                'cell_phone' => 'required',
             ];
         }
 
@@ -40,7 +40,7 @@ class EmployeeRequest extends FormRequest
             'last_name' => 'required',
             'birth_date' => 'required|date',
             'email' => 'required|email:filter',
-            'cell_phone' => 'required'
+            'cell_phone' => 'required',
         ];
     }
 }
