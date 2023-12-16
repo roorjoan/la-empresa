@@ -1,0 +1,558 @@
+openapi: 3.0.3
+info:
+  title: 'La Empresa Documentation'
+  description: 'Esta documentación tiene como objetivo proporcionar toda la información que necesitas para trabajar con nuestra API.'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8000'
+paths:
+  /api/v1/login:
+    post:
+      summary: 'Iniciar sesión de usuario.'
+      operationId: iniciarSesinDeUsuario
+      description: "Se utiliza para autenticar a un usuario y generar un token de acceso.\n\nCredenciales por defecto.\n\nCorreo: la-empresa@email.com.\n\nContraseña: la-empresa"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User logged in successfully'
+                  token: i1|BNI1OPgBUlPdDewv3E7IdJNp6u8G8AtRZotfXT2
+                properties:
+                  message:
+                    type: string
+                    example: 'User logged in successfully'
+                  token:
+                    type: string
+                    example: i1|BNI1OPgBUlPdDewv3E7IdJNp6u8G8AtRZotfXT2
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthorized
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Correo electrónico del usuario.'
+                  example: zcruickshank@example.org
+                password:
+                  type: string
+                  description: 'Contraseña del usuario.'
+                  example: '-Z7,KjtO}]<s@'
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/logout:
+    post:
+      summary: 'Cerrar sesión de usuario.'
+      operationId: cerrarSesinDeUsuario
+      description: 'Se utiliza para revocar el token de acceso y cerrar sesión de un usuario.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User logged out successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'User logged out successfully'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+      tags:
+        - Authentication
+  /api/v1/contract:
+    post:
+      summary: 'Crear un nuevo contrato.'
+      operationId: crearUnNuevoContrato
+      description: 'Se utiliza para crear un nuevo contrato para un empleado. Si ya existe un contrato activo para el empleado, el contrato anterior se cierra y se crea uno nuevo.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  employee_id: '3'
+                  contract_type_id: '3'
+                  date_from: '2023-07-19 00:00:00'
+                  date_to: '2023-07-19 00:00:00'
+                  salary_per_day: '30.00'
+                  created_at: '2023-12-16T05:58:50.000000Z'
+                  id: 2
+                properties:
+                  employee_id:
+                    type: string
+                    example: '3'
+                  contract_type_id:
+                    type: string
+                    example: '3'
+                  date_from:
+                    type: string
+                    example: '2023-07-19 00:00:00'
+                  date_to:
+                    type: string
+                    example: '2023-07-19 00:00:00'
+                  salary_per_day:
+                    type: string
+                    example: '30.00'
+                  created_at:
+                    type: string
+                    example: '2023-12-16T05:58:50.000000Z'
+                  id:
+                    type: integer
+                    example: 2
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+      tags:
+        - Contracts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                employee_id:
+                  type: integer
+                  description: 'ID del empleado al que se le asignará el contrato.'
+                  example: 1
+                contract_type_id:
+                  type: integer
+                  description: 'ID del tipo de contrato que se le asignará el contrato.'
+                  example: 18
+                date_from:
+                  type: datetime
+                  description: 'Fecha de inicio del contrato.'
+                  example: et
+                date_to:
+                  type: datetime
+                  description: 'Fecha de fin del contrato.'
+                  example: ipsam
+                salary_per_day:
+                  type: number
+                  description: 'Salario por día del contrato.'
+                  example: 55948752.618
+              required:
+                - employee_id
+                - contract_type_id
+                - date_from
+                - date_to
+                - salary_per_day
+  '/api/v1/contract/{employee_id}':
+    delete:
+      summary: 'Desactivar contrato de un empleado.'
+      operationId: desactivarContratoDeUnEmpleado
+      description: 'Se utiliza para desactivar el contrato activo de un empleado.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Not found'
+      tags:
+        - Contracts
+    parameters:
+      -
+        in: path
+        name: employee_id
+        description: 'ID del empleado cuyo contrato se desactivará.'
+        example: 12
+        required: true
+        schema:
+          type: integer
+  /api/v1/employees:
+    get:
+      summary: 'Obtener la lista de empleados activos.'
+      operationId: obtenerLaListaDeEmpleadosActivos
+      description: 'Se utiliza para obtener una lista de empleados activos junto con sus contratos.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      full_name: 'Rogelio Goyette Bins'
+                      tax_id_number: '0389881828766'
+                      email: carolyn49@rippin.com
+                      contracts: []
+                    -
+                      full_name: 'Mario Torphy Kuhlman'
+                      tax_id_number: '3550145757415'
+                      email: gstiedemann@yahoo.com
+                      contracts:
+                        -
+                          contract_type:
+                            -
+                              name: External
+                          date_from: '2023-02-21 18:11:44'
+                          date_to: '2008-08-05 05:58:37'
+                          salary_per_day: '25.00'
+                          is_active: true
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        full_name: 'Rogelio Goyette Bins'
+                        tax_id_number: '0389881828766'
+                        email: carolyn49@rippin.com
+                        contracts: []
+                      -
+                        full_name: 'Mario Torphy Kuhlman'
+                        tax_id_number: '3550145757415'
+                        email: gstiedemann@yahoo.com
+                        contracts:
+                          -
+                            contract_type:
+                              -
+                                name: External
+                            date_from: '2023-02-21 18:11:44'
+                            date_to: '2008-08-05 05:58:37'
+                            salary_per_day: '25.00'
+                            is_active: true
+                    items:
+                      type: object
+                      properties:
+                        full_name:
+                          type: string
+                          example: 'Rogelio Goyette Bins'
+                        tax_id_number:
+                          type: string
+                          example: '0389881828766'
+                        email:
+                          type: string
+                          example: carolyn49@rippin.com
+                        contracts:
+                          type: array
+                          example: []
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+      tags:
+        - Employees
+  /api/v1/employee:
+    post:
+      summary: 'Crear un nuevo empleado.'
+      operationId: crearUnNuevoEmpleado
+      description: 'Se utiliza para crear un nuevo empleado.'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  tax_id_number: '1233878024496'
+                  name: Jhon
+                  last_name: Doe
+                  birth_date: '1988-04-28'
+                  email: jhon@gmail.com
+                  cell_phone: '(111) 889-3678'
+                  created_at: '2023-12-16T05:24:51.000000Z'
+                  id: 3
+                properties:
+                  tax_id_number:
+                    type: string
+                    example: '1233878024496'
+                  name:
+                    type: string
+                    example: Jhon
+                  last_name:
+                    type: string
+                    example: Doe
+                  birth_date:
+                    type: string
+                    example: '1988-04-28'
+                  email:
+                    type: string
+                    example: jhon@gmail.com
+                  cell_phone:
+                    type: string
+                    example: '(111) 889-3678'
+                  created_at:
+                    type: string
+                    example: '2023-12-16T05:24:51.000000Z'
+                  id:
+                    type: integer
+                    example: 3
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+      tags:
+        - Employees
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tax_id_number:
+                  type: string
+                  description: 'Número de identificación fiscal del empleado.'
+                  example: perferendis
+                name:
+                  type: string
+                  description: 'Nombre del empleado.'
+                  example: sunt
+                last_name:
+                  type: string
+                  description: 'Apellido del empleado.'
+                  example: aut
+                birth_date:
+                  type: string
+                  description: 'Fecha de nacimiento del empleado.'
+                  example: assumenda
+                email:
+                  type: string
+                  description: 'Correo del empleado.'
+                  example: ywilkinson@example.org
+                cell_phone:
+                  type: string
+                  description: 'Celular del empleado.'
+                  example: eos
+              required:
+                - tax_id_number
+                - name
+                - last_name
+                - birth_date
+                - email
+                - cell_phone
+  '/api/v1/employee/{folio}':
+    put:
+      summary: 'Actualizar los detalles de un empleado.'
+      operationId: actualizarLosDetallesDeUnEmpleado
+      description: 'Se utiliza para actualizar los detalles de un empleado identificado por su número de identificación fiscal (folio).'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 3
+                  tax_id_number: '1233878024496'
+                  name: Jhon
+                  last_name: Doe
+                  birth_date: '2023-07-18'
+                  email: jhondoe@hotmail.com
+                  cell_phone: 555.555.5555
+                  is_active: 1
+                  created_at: '2023-12-16T05:24:51.000000Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 3
+                  tax_id_number:
+                    type: string
+                    example: '1233878024496'
+                  name:
+                    type: string
+                    example: Jhon
+                  last_name:
+                    type: string
+                    example: Doe
+                  birth_date:
+                    type: string
+                    example: '2023-07-18'
+                  email:
+                    type: string
+                    example: jhondoe@hotmail.com
+                  cell_phone:
+                    type: string
+                    example: 555.555.5555
+                  is_active:
+                    type: integer
+                    example: 1
+                  created_at:
+                    type: string
+                    example: '2023-12-16T05:24:51.000000Z'
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Not found'
+      tags:
+        - Employees
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tax_id_number:
+                  type: string
+                  description: 'Número de identificación fiscal del empleado.'
+                  example: aut
+                name:
+                  type: string
+                  description: 'Nombre del empleado.'
+                  example: libero
+                last_name:
+                  type: string
+                  description: 'Apellido del empleado.'
+                  example: quas
+                birth_date:
+                  type: string
+                  description: 'Fecha de nacimiento del empleado.'
+                  example: minima
+                email:
+                  type: string
+                  description: 'Correo del empleado.'
+                  example: acarter@example.com
+                cell_phone:
+                  type: string
+                  description: 'Celular del empleado.'
+                  example: quas
+              required:
+                - tax_id_number
+                - name
+                - last_name
+                - birth_date
+                - email
+                - cell_phone
+    parameters:
+      -
+        in: path
+        name: folio
+        description: 'Número de identificación fiscal (folio) del empleado.'
+        example: iure
+        required: true
+        schema:
+          type: string
+tags:
+  -
+    name: Authentication
+    description: "\nAutenticación de usuarios."
+  -
+    name: Contracts
+    description: "\nGestión de contratos de empleados."
+  -
+    name: Employees
+    description: "\nGestión de empleados."
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []

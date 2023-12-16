@@ -1,0 +1,137 @@
+name: Authentication
+description: |-
+
+  Autenticación de usuarios.
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/login
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        Autenticación de usuarios.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Iniciar sesión de usuario.'
+      description: |-
+        Se utiliza para autenticar a un usuario y generar un token de acceso.
+
+        Credenciales por defecto.
+
+        Correo: la-empresa@email.com.
+
+        Contraseña: la-empresa
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Correo electrónico del usuario.'
+        required: true
+        example: zcruickshank@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Contraseña del usuario.'
+        required: true
+        example: '-Z7,KjtO}]<s@'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: zcruickshank@example.org
+      password: '-Z7,KjtO}]<s@'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "User logged in successfully",
+              "token": "i1|BNI1OPgBUlPdDewv3E7IdJNp6u8G8AtRZotfXT2"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthorized"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/logout
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        Autenticación de usuarios.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Cerrar sesión de usuario.'
+      description: 'Se utiliza para revocar el token de acceso y cerrar sesión de un usuario.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "User logged out successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer k3aZ6PhVa6g145EbefDdv8c'
+    controller: null
+    method: null
+    route: null
+    custom: []

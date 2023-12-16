@@ -1,0 +1,346 @@
+name: Employees
+description: |-
+
+  Gestión de empleados.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/employees
+    metadata:
+      groupName: Employees
+      groupDescription: |-
+
+        Gestión de empleados.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Obtener la lista de empleados activos.'
+      description: 'Se utiliza para obtener una lista de empleados activos junto con sus contratos.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+               "data": [
+                 {
+                   "full_name": "Rogelio Goyette Bins",
+                   "tax_id_number": "0389881828766",
+                   "email": "carolyn49@rippin.com",
+                   "contracts": []
+                 },
+                 {
+                   "full_name": "Mario Torphy Kuhlman",
+                   "tax_id_number": "3550145757415",
+                   "email": "gstiedemann@yahoo.com",
+                   "contracts": [
+                     {
+                       "contract_type": [
+                         {
+                           "name": "External"
+                         }
+                       ],
+                       "date_from": "2023-02-21 18:11:44",
+                       "date_to": "2008-08-05 05:58:37",
+                       "salary_per_day": "25.00",
+                       "is_active": true
+                     }
+                   ]
+                 }
+               ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aEZa5fb16V6gDch3Pdv4k8e'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/employee
+    metadata:
+      groupName: Employees
+      groupDescription: |-
+
+        Gestión de empleados.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Crear un nuevo empleado.'
+      description: 'Se utiliza para crear un nuevo empleado.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      tax_id_number:
+        name: tax_id_number
+        description: 'Número de identificación fiscal del empleado.'
+        required: true
+        example: perferendis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      name:
+        name: name
+        description: 'Nombre del empleado.'
+        required: true
+        example: sunt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Apellido del empleado.'
+        required: true
+        example: aut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      birth_date:
+        name: birth_date
+        description: 'Fecha de nacimiento del empleado.'
+        required: true
+        example: assumenda
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Correo del empleado.'
+        required: true
+        example: ywilkinson@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      cell_phone:
+        name: cell_phone
+        description: 'Celular del empleado.'
+        required: true
+        example: eos
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      tax_id_number: perferendis
+      name: sunt
+      last_name: aut
+      birth_date: assumenda
+      email: ywilkinson@example.org
+      cell_phone: eos
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+              "tax_id_number": "1233878024496",
+              "name": "Jhon",
+              "last_name": "Doe",
+              "birth_date": "1988-04-28",
+              "email": "jhon@gmail.com",
+              "cell_phone": "(111) 889-3678",
+              "created_at": "2023-12-16T05:24:51.000000Z",
+              "id": 3
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vE1kPd38ea6VgZDb6h4af5c'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/employee/{folio}'
+    metadata:
+      groupName: Employees
+      groupDescription: |-
+
+        Gestión de empleados.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Actualizar los detalles de un empleado.'
+      description: 'Se utiliza para actualizar los detalles de un empleado identificado por su número de identificación fiscal (folio).'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      folio:
+        name: folio
+        description: 'Número de identificación fiscal (folio) del empleado.'
+        required: true
+        example: iure
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      folio: iure
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      tax_id_number:
+        name: tax_id_number
+        description: 'Número de identificación fiscal del empleado.'
+        required: true
+        example: aut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      name:
+        name: name
+        description: 'Nombre del empleado.'
+        required: true
+        example: libero
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Apellido del empleado.'
+        required: true
+        example: quas
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      birth_date:
+        name: birth_date
+        description: 'Fecha de nacimiento del empleado.'
+        required: true
+        example: minima
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Correo del empleado.'
+        required: true
+        example: acarter@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      cell_phone:
+        name: cell_phone
+        description: 'Celular del empleado.'
+        required: true
+        example: quas
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      tax_id_number: aut
+      name: libero
+      last_name: quas
+      birth_date: minima
+      email: acarter@example.com
+      cell_phone: quas
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "id": 3,
+              "tax_id_number": "1233878024496",
+              "name": "Jhon",
+              "last_name": "Doe",
+              "birth_date": "2023-07-18",
+              "email": "jhondoe@hotmail.com",
+              "cell_phone": "555.555.5555",
+              "is_active": 1,
+              "created_at": "2023-12-16T05:24:51.000000Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+              "message": "Unauthenticated"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              "message": "Not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer kge16vD4fZb3h65caV8dEPa'
+    controller: null
+    method: null
+    route: null
+    custom: []

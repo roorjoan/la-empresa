@@ -1,29 +1,56 @@
-<h2>First of all, run the following commands:</h2>
+# Instalación del Proyecto La Empresa
 
--   composer install
--   php artisan migrate --seed
+Este documento proporciona instrucciones paso a paso para instalar un proyecto Laravel que incluye seeders para poblar la base de datos de manera inicial. Además, se ha generado documentación para la API utilizando Laravel Scribe.
 
-<br><h2>Authentication routes</h2>
+## Requisitos Previos
 
--   la-empresa@email.com
--   la-empresa
+Asegúrate de tener instalados los siguientes requisitos en tu sistema:
 
-[POST] http://.../api/v1/login <br>
-[POST] http://.../api/v1/logout
+-   PHP (versión 8.x)
+-   Composer
+-   MySQL o cualquier otro sistema de gestión de bases de datos compatible con Laravel
 
-<br><h2>Endpoints</h2>
+## Pasos de Instalación
 
-Return all the employees <br>
-[GET] http://.../api/v1/employees <br>
+1. **Clonar el Repositorio:**
 
-Add new employee <br>
-[POST] http://.../api/v1/employee <br>
+    ```bash
+    git clone https://github.com/roorjoan/la-empresa.git
+    ```
 
-Update an employee by folio <br>
-[PUT] http://.../api/v1/employee/{folio} <br>
+2. **Instalar Dependencias:**
 
-Add new contract <br>
-[POST] http://.../api/v1/contract <br>
+    ```bash
+    cd tuproyecto
+    composer install
+    ```
 
-Delete a contract by employee_id <br>
-[DELETE] http://.../api/v1/contract/{employee_id}
+3. **Copiar el Archivo de Configuración:**
+
+    ```bash
+    cp .env.example .env
+    ```
+
+Luego, edita el archivo .env con los detalles de tu base de datos y otras configuraciones necesarias.
+
+4. **Generar Clave de Encriptación:**
+
+    ```bash
+    php artisan key:generate
+    ```
+
+5. **Migrar la Base de Datos y Poblar la Base de Datos:**
+
+    ```bash
+    php artisan migrate --seed
+    ```
+
+6. **Iniciar el Servidor de Desarrollo:**
+
+    ```bash
+    php artisan serve
+    ```
+
+## Acceder a la Documentación de la API
+
+La documentación de la API se ha generado utilizando Laravel Scribe. Puedes acceder a la documentación en http://localhost:8000/docs después de iniciar el servidor de desarrollo.
